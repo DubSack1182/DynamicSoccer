@@ -6,7 +6,7 @@ const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 // a logged in user.
 // GET /todos/new
 router.get('/new', ensureLoggedIn, (req, res) => {
-  res.send('Yay, you were logged in!');
+  res.render('/trainings/new');
 });
 
 module.exports = router;

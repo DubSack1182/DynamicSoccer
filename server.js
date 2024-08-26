@@ -5,6 +5,7 @@ const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require('express-session');
 
+
 const app = express();
 
 mongoose.connect(process.env.MONGODB_URI);
@@ -12,6 +13,8 @@ mongoose.connect(process.env.MONGODB_URI);
 mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
+
+const Training = require("./models/training.js");
 
 // Morgan for logging HTTP requests
 app.use(morgan('dev'));
@@ -50,6 +53,29 @@ app.use('/todos', require('./controllers/todos'));
 app.get('/', async (req, res) => {
   res.render('home.ejs');
 });
+
+// GET /trainings
+app.get('/trainings', async (req, res) => {
+  const allTrainings = await Training.find();
+  res.render('trainings/index.ejs', {trainings: allTrainings });
+});
+
+// GET /trainings/new
+app.get('/trainings/new', (req, res) => {
+  res.render('trainings/new.ejs');
+});
+
+// POST /trainings
+app.post('/training', async (req, res) => {
+  if (req.body.isReadyToBook === 'on') {
+    req.body.isReadyToBook = true;
+  } else {
+    req.body.isReadyToBook = false;
+  }
+  await Training.create(req.body);
+  res.redirect('trainings/new');
+});
+
 
 
 // Set the port from environment variable or default to 3000
