@@ -5,7 +5,7 @@ const Comment = require('../models/comment');
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 
 // GET /trainings (index)
-router.get('/', ensureLoggedIn, async (req, res) => {
+router.get('/index', ensureLoggedIn, async (req, res) => {
   try {
     const trainings = await Training.find({});
     res.render('training/index', { training, showNav: true });
