@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/user');
 const bcrypt = require('bcrypt')
+const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 
 // All paths start with "/auth"
 
@@ -38,13 +39,13 @@ router.post('/login', async (req, res) => {
       req.session.user = { _id: user._id };
       req.session.save();
       // Perhaps update to some other functionality
-      return res.redirect('/views/trainings/new.ejs');
+      return res.redirect('/training/new.ejs');
     } else {
       return res.redirect('/auth/login');
     }
   } catch (err) {
     console.log(err);
-    res.redirect('/trainings/new.ejs');
+    res.redirect('/');
   }
 });
 
@@ -52,10 +53,43 @@ router.get('/login', async (req, res) => {
   res.render('auth/login.ejs');
 });
 
+
+
+// GET /auth/trainings/new (show available sessions form)
+router.get('/trainings/new', ensureLoggedIn, async (req, res) => {
+  try {
+    const user = await User.findById(req.session.user._id);
+    res.render('auth/training/new', {user, showNav: true});
+  } catch (err) {
+    console.log(err);
+    res.redirect('/auth/training/new');
+  }
+});
+
+// POST /auth/trainings/new (update new)
+router.post('/trainings/new', ensureLoggedIn, async (req, res) => {
+  try {
+    const user = await User.findById(req.session.user._id);
+    user.username = req.body.username || user.username;
+    user.email = req.body.email || user.email;
+
+    if (req.body.password) {
+      user.password = bcrypt.hashSync(req.body.password, 6);
+    }
+
+    await user.save();
+    res.redirect('/auth//trainings/new');
+  } catch (err) {
+    console.log(err);
+    res.redirect('/auth//trainings/new');
+  }
+});
+
 // GET /auth/logout (logout)
 router.get('/logout', (req, res) => {
   req.session.destroy();
   res.redirect('/');
 });
+
 
 module.exports = router;
