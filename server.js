@@ -62,7 +62,7 @@ app.get('/trainings', async (req, res) => {
 
 // GET /trainings/new
 app.get('/trainings/new', (req, res) => {
-  res.render('trainings/new.ejs');
+  res.render('trainings/new');
 });
 
 // POST /trainings
