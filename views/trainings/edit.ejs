@@ -1,6 +1,6 @@
 <%- include('../partials/header.ejs') %>
     <h1>Edit Training Session</h1>
-<form action="/trainings" method="POST">
+<form action="/trainings/<%= training._id %>?_method=PUT" method="POST">
   <label for="location">Location</label>
   <input type="text" required name="location" id="location" value="<%= training.location %>"/>
   <label for="date">Date</label>

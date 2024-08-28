@@ -70,6 +70,17 @@ router.get('/:id/edit', ensureLoggedIn, async (req, res) => {
   }
 });
 
+// PUT /trainings/:id (update)
+router.put('/:id', ensureLoggedIn, async (req, res) => {
+  try {
+    await Training.findOneAndUpdate({_id: req.params.id, coach: req.user._id}, req.body);
+    res.redirect(`/trainings/${req.params.id}`);
+  } catch (err) {
+    console.log(err);
+    res.redirect('/trainings');
+  }
+});
+
 // DELETE /trainings/:id (delete)
 router.delete('/:id', ensureLoggedIn, async (req, res) => {
   try {
