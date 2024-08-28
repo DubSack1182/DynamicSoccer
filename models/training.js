@@ -15,7 +15,12 @@ const trainingSchema = new mongoose.Schema({
   addressOne: String,
   addressTwo: String,
   phone: String,
-  bookings: [bookingSchema]
+  bookings: [bookingSchema],
+  coach: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }
 });
 
   const Training = mongoose.model("Training", trainingSchema);

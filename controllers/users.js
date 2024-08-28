@@ -37,4 +37,19 @@ router.get('/:userId/book/:bookingId', ensureLoggedIn, async (req, res) => {
     res.redirect('/');
   }
 });
+
+router.post('/:userId/book/:bookingId', ensureLoggedIn, async (req, res) => {
+  try {
+    const user = await User.findById(req.session.user._id);
+    const trainings = await Training.find({}).populate('bookings')
+    const booking = trainings[0].bookings.filter((booking) => booking._id === req.params.bookingId)
+    user.bookings.push(booking[0])
+    user.save()
+    res.redirect(`/users/${req.session.user._id}/bookings`);
+  } catch (err) {
+    console.log(err);
+    res.redirect('/');
+  }
+});
+
 module.exports = router;

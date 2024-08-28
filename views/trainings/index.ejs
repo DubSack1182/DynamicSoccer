@@ -1,14 +1,6 @@
-<!-- views/trainings/index.ejs -->
+<%- include('../partials/header.ejs') %>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dynamic Training Sessions</title>
-  </head>
-  <body>
-    <h1>All Dynamic Training Sessions</h1>
+    <h1>My Dynamic Training Sessions</h1>
     <% if (trainings.length) { %>
       <ul>
           <% trainings.forEach((training) => { %>
@@ -18,12 +10,15 @@
               <li>
                 <%= training.price %> &nbsp;&nbsp; 
               </li>
+              <li>
+                <%= training.description %> &nbsp;&nbsp; 
+              </li>
               <form action="/users/<%= user._id %>/bookings/<%= training._id %>" method="POST">
                 <button type="submit">Book Session!</button>
               </form>
-          <% })%>
+          <% }) %>
       </ul>
+  <% } else { %>
+      <h3>Create Your Training Sessions</h3>
   <% } %>
-    <a href="/trainings/new">View Dynamic Training Sessions</a>
-  </body>
-</html>
+<%- include('../partials/footer.ejs') %>

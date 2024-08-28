@@ -6,8 +6,8 @@ const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 // GET /trainings (index)
 router.get('/', ensureLoggedIn, async (req, res) => {
   try {
-    const trainings = await Training.find({}).populate('bookings')
-    res.render('trainings/index.ejs', { trainings: trainings[0]?.bookings, user: req.user, showNav: true });
+    const trainings = await Training.find({coach: req.user._id}).populate('bookings');
+    res.render('trainings/index.ejs', { trainings });
   } catch (err) {
     console.log(err);
     res.redirect('/');
@@ -63,6 +63,17 @@ const bookings = [
     console.log(err);
     res.redirect('/trainings/new');
   }
+});
+
+// POST /trainings
+router.post('/training', ensureLoggedIn, async (req, res) => {
+  if (req.body.isReadyToBook === 'on') {
+    req.body.isReadyToBook = true;
+  } else {
+    req.body.isReadyToBook = false;
+  }
+ await Training.create(req.body);
+ res.redirect('trainings/new.ejs');
 });
 
 // GET /trainings/:id (show) - Show details booked sessions
