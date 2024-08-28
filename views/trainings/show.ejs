@@ -18,8 +18,8 @@
         <p>
           Cost Per Hour: $<%= training.price %>
         </p>
-        <form action="/users/<%= user._id %>/bookings/<%= training._id %>" method="POST">
-          <button type="submit">Book Session!</button>
+        <form action="/trainings/<%= training._id %>?_method=DELETE" method="POST">
+          <button type="submit">DELETE!</button>
         </form>
       </article>
     </section>

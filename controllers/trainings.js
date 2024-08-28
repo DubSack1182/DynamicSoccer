@@ -61,11 +61,7 @@ router.get('/:id', ensureLoggedIn, async (req, res) => {
 // DELETE /trainings/:id (delete)
 router.delete('/:id', ensureLoggedIn, async (req, res) => {
   try {
-    const train = await Training.findById(req.params.id);
-    if (!train.createdBy.equals(req.session.user._id)) {
-      return res.redirect('/trainings');
-    }
-    await Training.findByIdAndDelete(req.params.id);
+    await Training.findOneAndDelete({_id: req.params.id, coach: req.user._id});
     res.redirect('/trainings');
   } catch (err) {
     console.log(err);
