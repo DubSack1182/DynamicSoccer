@@ -37,21 +37,33 @@ router.post('/', ensureLoggedIn, async (req, res) => {
 });
 
 // POST /trainings
-router.post('/training', ensureLoggedIn, async (req, res) => {
-  if (req.body.isReadyToBook === 'on') {
-    req.body.isReadyToBook = true;
-  } else {
-    req.body.isReadyToBook = false;
-  }
- await Training.create(req.body);
- res.redirect('trainings/new.ejs');
-});
+//router.post('/training', ensureLoggedIn, async (req, res) => {
+//  if (req.body.isReadyToBook === 'on') {
+//    req.body.isReadyToBook = true;
+//  } else {
+//    req.body.isReadyToBook = false;
+//  }
+// await Training.create(req.body);
+// res.redirect('trainings/new.ejs');
+//});
 
 // GET /trainings/:id (show) - Show details of coaches sessions
 router.get('/:id', ensureLoggedIn, async (req, res) => { 
   try {
     const training = await Training.findById(req.params.id);
     res.render('trainings/show.ejs', { training }); 
+  } catch (err) {
+    console.log(err);
+    res.redirect('/trainings');
+  }
+});
+
+// GET /trainings/:id/edit (coaches side to edit their training sessions)
+router.get('/:id/edit', ensureLoggedIn, async (req, res) => { 
+  try {
+    const training = await Training.findById(req.params.id);
+    const types = Training.schema.path('type').enumValues;
+    res.render('trainings/edit.ejs', { training, types }); 
   } catch (err) {
     console.log(err);
     res.redirect('/trainings');

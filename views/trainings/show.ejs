@@ -18,6 +18,7 @@
         <p>
           Cost Per Hour: $<%= training.price %>
         </p>
+        <a href="/trainings/<%= training._id %>/edit">EDIT</a> 
         <form action="/trainings/<%= training._id %>?_method=DELETE" method="POST">
           <button type="submit">DELETE!</button>
         </form>
