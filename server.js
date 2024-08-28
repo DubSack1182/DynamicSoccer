@@ -55,26 +55,26 @@ app.get('/', async (req, res) => {
 });
 
 // GET /trainings
-app.get('/trainings', async (req, res) => {
-  const allTrainings = await Training.find();
-  res.render('trainings/index.ejs', {trainings: allTrainings });
-});
-
-// GET /trainings/new
-app.get('/trainings/new', (req, res) => {
-  res.render('trainings/new');
-});
-
-// POST /trainings
-app.post('/training', async (req, res) => {
-  if (req.body.isReadyToBook === 'on') {
-    req.body.isReadyToBook = true;
-  } else {
-    req.body.isReadyToBook = false;
-  }
-  await Training.create(req.body);
-  res.redirect('trainings/new');
-});
+//app.get('/trainings', async (req, res) => {
+//  const allTrainings = await Training.find();
+//  res.render('trainings/index.ejs', {trainings: allTrainings });
+//});
+//
+//// GET /trainings/new
+//app.get('/trainings/new', (req, res) => {
+//  res.render('trainings/new');
+//});
+//
+//// POST /trainings
+//app.post('/training', async (req, res) => {
+//  if (req.body.isReadyToBook === 'on') {
+//    req.body.isReadyToBook = true;
+//  } else {
+//    req.body.isReadyToBook = false;
+//  }
+//  await Training.create(req.body);
+//  res.redirect('trainings/new');
+//});
 
 
 
