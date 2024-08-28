@@ -25,7 +25,7 @@ router.post('/sign-up', async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-  res.redirect('/');
+  res.redirect('/trainings');
 });
 
 // POST /auth/login (login user)

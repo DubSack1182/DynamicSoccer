@@ -61,3 +61,8 @@ button:hover {
   background-color: lightslategray;
   color: white;
 }
+
+.trainings-container {
+  border: 0.6vmin solid black;
+  padding: 2vmin;
+}

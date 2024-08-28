@@ -11,10 +11,14 @@ const bookingSchema = new mongoose.Schema(
 );
 
 const trainingSchema = new mongoose.Schema({
-  name: String,
-  addressOne: String,
-  addressTwo: String,
+  location: String,
+  date: Date,
+  type: {
+    type: String,
+    enum: ["Ball Manipulation", 'Finishing', 'Turning', 'Passing', 'Controling']
+  },
   phone: String,
+  price: Number,
   bookings: [bookingSchema],
   coach: {
     type: mongoose.Schema.Types.ObjectId,

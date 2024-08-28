@@ -2,22 +2,30 @@
 
     <h1>My Dynamic Training Sessions</h1>
     <% if (trainings.length) { %>
-      <ul>
+      <section class="trainings-container">
           <% trainings.forEach((training) => { %>
-              <li>
-                  <%= training.name %> &nbsp;&nbsp; 
-              </li>
-              <li>
-                <%= training.price %> &nbsp;&nbsp; 
-              </li>
-              <li>
-                <%= training.description %> &nbsp;&nbsp; 
-              </li>
+            <article>
+              <p>
+                  Location: <%= training.location %>
+              </p>
+              <p>
+                Date: <%= training.date.toLocaleDateString() %>
+              </p>
+              <p>
+                Dynamic Session Type: <%= training.type %>
+              </p>
+              <p>
+                Phone: <%= training.phone %>
+              </p>
+              <p>
+                Cost Per Hour: $<%= training.price %>
+              </p>
               <form action="/users/<%= user._id %>/bookings/<%= training._id %>" method="POST">
                 <button type="submit">Book Session!</button>
               </form>
+            </article>
           <% }) %>
-      </ul>
+      </section>
   <% } else { %>
       <h3>Create Your Training Sessions</h3>
   <% } %>
