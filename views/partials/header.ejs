@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Authentication</title>
+  <title>Dynamic Soccer</title>
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
@@ -14,9 +14,9 @@
     <a href="/">HOME</a>
     <div>
       <% if (user) { %>
-        <a href="/trainings/new">BOOKING</a>&nbsp;&nbsp;
+        <a href="/trainings/new">NEW TRAINING</a>&nbsp;&nbsp;
         <a href="/auth/logout">LOG OUT</a>&nbsp;&nbsp;
-        <span>Wecome, <%= user.username %></span>
+        <span>Welcome, <%= user.username %></span>
       <% } else { %>
         <a href="/auth/sign-up">SIGN UP</a>
         <a href="/auth/login">LOG IN</a>

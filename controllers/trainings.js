@@ -3,6 +3,8 @@ const router = express.Router();
 const Training = require('../models/training');
 const ensureLoggedIn = require('../middleware/ensureLoggedIn');
 
+// All paths start with /trainings...
+
 // GET /trainings (index)
 router.get('/', ensureLoggedIn, async (req, res) => {
   try {
@@ -16,7 +18,7 @@ router.get('/', ensureLoggedIn, async (req, res) => {
 
 // GET /trainings/new - Show form to create a training session
 router.get('/new', ensureLoggedIn, (req, res) => {
-  res.render('trainings/new.ejs', { showNav: true });
+  res.render('trainings/new.ejs');
 });
 
 // POST /trainings - Create a new booking
