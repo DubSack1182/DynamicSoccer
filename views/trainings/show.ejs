@@ -1,0 +1,26 @@
+<%- include('../partials/header.ejs') %>
+
+    <h1>My Dynamic Training Session</h1>
+    <section class="trainings-container">
+      <article>
+        <p>
+            Location: <%= training.location %>
+        </p>
+        <p>
+          Date: <%= training.date.toLocaleDateString() %>
+        </p>
+        <p>
+          Dynamic Session Type: <%= training.type %>
+        </p>
+        <p>
+          Phone: <%= training.phone %>
+        </p>
+        <p>
+          Cost Per Hour: $<%= training.price %>
+        </p>
+        <form action="/users/<%= user._id %>/bookings/<%= training._id %>" method="POST">
+          <button type="submit">Book Session!</button>
+        </form>
+      </article>
+    </section>
+<%- include('../partials/footer.ejs') %>

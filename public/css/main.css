@@ -62,7 +62,8 @@ button:hover {
   color: white;
 }
 
-.trainings-container {
+.trainings-container > article {
   border: 0.6vmin solid black;
   padding: 2vmin;
+  margin: 1vmin;
 }

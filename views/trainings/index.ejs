@@ -6,23 +6,11 @@
           <% trainings.forEach((training) => { %>
             <article>
               <p>
-                  Location: <%= training.location %>
-              </p>
-              <p>
-                Date: <%= training.date.toLocaleDateString() %>
-              </p>
-              <p>
+                Location: <%= training.location %><br>
+                Date: <%= training.date.toLocaleDateString() %><br>
                 Dynamic Session Type: <%= training.type %>
               </p>
-              <p>
-                Phone: <%= training.phone %>
-              </p>
-              <p>
-                Cost Per Hour: $<%= training.price %>
-              </p>
-              <form action="/users/<%= user._id %>/bookings/<%= training._id %>" method="POST">
-                <button type="submit">Book Session!</button>
-              </form>
+              <a href="/trainings/<%= training._id %>">DETAILS</a> 
             </article>
           <% }) %>
       </section>

@@ -47,11 +47,11 @@ router.post('/training', ensureLoggedIn, async (req, res) => {
  res.redirect('trainings/new.ejs');
 });
 
-// GET /trainings/:id (show) - Show details booked sessions
-router.get('/:id', ensureLoggedIn, async (req, res) => {  // ensureLoggedIn to protect the route
+// GET /trainings/:id (show) - Show details of coaches sessions
+router.get('/:id', ensureLoggedIn, async (req, res) => { 
   try {
-    const training = await Training.findById(req.params.id).populate('createdBy');
-    res.render('trainings/index.ejs', { train, showNav: true }); 
+    const training = await Training.findById(req.params.id);
+    res.render('trainings/show.ejs', { training }); 
   } catch (err) {
     console.log(err);
     res.redirect('/trainings');
