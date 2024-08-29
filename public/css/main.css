@@ -64,6 +64,37 @@ button:hover {
 
 .trainings-container > article {
   border: 0.6vmin solid black;
+  background-color: lightblue;
   padding: 2vmin;
   margin: 1vmin;
+}
+
+.btn {
+  text-decoration: none;
+  color: slategray;
+  background-color: white;
+  padding: 1.5vmin;
+  border-radius: 1vmin;
+  margin: black;
+  &:hover {
+    color: gray;
+    background-color: lightslategray;
+    color: white;
+  }
+}
+
+.training-container {
+  border: 0.6vmin solid black;
+  background-color: lightblue;
+  padding: 2vmin;
+  margin: 1vmin;
+  text-align: center;
+}
+
+.training1-container {
+  border: 0.6vmin solid black;
+  background-color: lightblue;
+  padding: 2vmin;
+  margin: 1vmin;
+  text-align: center;
 }
