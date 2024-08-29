@@ -1,4 +1,5 @@
 # Dynamic Soccer
+https://dynamicsoccer-814ac914ad58.herokuapp.com/
 
 ## Coaches Application that allows them to Create | Update | Delete training sessions.
 
@@ -43,3 +44,8 @@ https://trello.com/b/hLlIDS5s/dynamic-soccer-training
 4. AAC, after booking, you will go to a page that lists out all your bookings
 5. AAC, You will now have the option to delete your booked sessions or leave a note in that sessionsfor the coach.
 
+# Credit Goes Out To:
+## 1. Reed Krosby
+## 2. Sam Bassong
+## 3. Jim Clark
+=> Thank you for your patience | Knowldege and PATIENCE!!
